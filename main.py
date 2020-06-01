@@ -25,22 +25,54 @@ def draw(px, py, chunks_):
     except IndexError:
         pass
 
+    # Render the player chunk
+    playerchunk_rendered = []
+    playerchunk_tmp = ""
+    for x in range(15):
+        for y in range(256):
+            if (py + 10) > y > (py - 10):
+                playerchunk_tmp += playerchunk[x][y]
+        playerchunk_rendered.append(playerchunk_tmp)
+        playerchunk_tmp = ""
+
     # Render chunk before if its not empty
-    chunksbefore_rendered = []
+    chunkbefore_rendered = []
     chunkbefore_temp = ""
     try:
         for x in range(0, 15):
             for y in range(0, 256):
                 if (py + 10) > y > (py - 10):
                     chunkbefore_temp += chunkbefore[x][y]
-            chunksbefore_rendered.append(chunkbefore_temp)
+            chunkbefore_rendered.append(chunkbefore_temp)
             chunkbefore_temp = ""
     except IndexError:
         for x in range(0, 15):
             for y in range((py - 10), (py + 10)):
                 chunkbefore_temp += " "
-            chunksbefore_rendered.append(chunkbefore_temp)
+            chunkbefore_rendered.append(chunkbefore_temp)
             chunkbefore_temp = ""
+
+    # The same as chunk after
+    chunkafter_rendered = []
+    chunkafter_tmp = ""
+
+    try:
+        for x in range(15):
+            for y in range(256):
+                if py + 10 > y > py - 10:
+                    chunkafter_tmp += chunkafter[x][y]
+            chunkafter_rendered.append(chunkafter_tmp)
+            chunkafter_tmp = ""
+    except IndexError:
+        for x in range(15):
+            for y in range((py-10),(py+10)):
+                chunkafter_tmp += " "
+            chunkbefore_rendered.append(chunkbefore_tmp)
+            chunkbefore_tmp = ""
+
+    # Render 3 of the chunks to a single variable
+
+
 
 # Functions ==================================
 
